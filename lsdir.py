@@ -8,13 +8,11 @@ class Lsdir:
 
     def scan_dir(self, path, level=1):
         children = []
-        item_count = 0
         # Loop to append all directories first
         for item in os.listdir(path):
             item_path = os.path.join(path, item)
             if os.path.isdir(item_path):
-                item_count += 1
-                self.id = level * 100 + item_count
+                self.id += 1
                 children.append({
                     "id": self.id,
                     "name": item,
@@ -26,8 +24,7 @@ class Lsdir:
         for item in os.listdir(path):
             item_path = os.path.join(path, item)
             if not os.path.isdir(item_path):
-                item_count += 1
-                self.id = level * 100 + item_count
+                self.id += 1
                 mime_type = mimetypes.guess_type(item_path)[0] 
                 if mime_type and mime_type.startswith('text'):
                     with open(item_path, 'r', encoding='utf8', errors='ignore') as f:
