@@ -2,7 +2,7 @@ import os
 import mimetypes
 
 
-class Directoryz:
+class Lsdir:
     def __init__(self):
         self.id = 0
 
@@ -109,4 +109,17 @@ class Directoryz:
         return self.count_files(data)+self.count_dirs(data)
 
 if __name__ == '__main__':
-    pass
+    files = Lsdir()
+    data = files.scan_cwd()
+
+    levels = files.count_levels(data)
+    print(levels)
+    files.print_tree(data, max_levels=2)  
+
+    while True:
+
+        id = int(input("File: "))
+
+        data2 = files.find_item_by_id(id, data)
+        print(id)
+        print(data2['filetype'])
