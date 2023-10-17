@@ -30,7 +30,7 @@ class Lsdir:
                 self.id = level * 100 + item_count
                 mime_type = mimetypes.guess_type(item_path)[0] 
                 if mime_type and mime_type.startswith('text'):
-                    with open(item_path, 'r', encoding='utf8') as f:
+                    with open(item_path, 'r', encoding='utf8', errors='ignore') as f:
                         content = f.read()
                     children.append({
                         "id": self.id,
